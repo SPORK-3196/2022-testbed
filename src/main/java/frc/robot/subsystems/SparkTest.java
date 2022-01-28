@@ -13,17 +13,15 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class SparkTest extends SubsystemBase {
-  public CANSparkMax sparkMax_1 = new CANSparkMax(13, MotorType.kBrushless);
-  public CANSparkMax sparkMax_2 = new CANSparkMax(14, MotorType.kBrushless);
-  
-  
-
+  // public CANSparkMax sparkMax_1 = new CANSparkMax(13, MotorType.kBrushless);
+  // public CANSparkMax sparkMax_2 = new CANSparkMax(14, MotorType.kBrushless);
   
   /** Creates a new ExampleSubsystem. */
   public SparkTest() {
 
   }
 
+  /*
   public void runSparks (double power) {
     sparkMax_1.set(power);
     sparkMax_2.set(power);
@@ -36,6 +34,12 @@ public class SparkTest extends SubsystemBase {
   public void runSpark2 (double power) {
     sparkMax_2.set(power);
   }
+
+  public void stopSparks() {
+    sparkMax_1.set(0);
+    sparkMax_2.set(0);
+  }
+  */
 
   @Override
   public void periodic() {

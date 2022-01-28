@@ -5,7 +5,9 @@
 package frc.robot.commands;
 
 import frc.robot.subsystems.SparkTest;
+import frc.robot.Robot;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+
 
 /** An example command that uses an example subsystem. */
 public class JoystickSparkControl extends CommandBase {
@@ -27,12 +29,24 @@ public class JoystickSparkControl extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
+    /*
+    if (Robot.leftJoystickY < 0) {
+      SPARK_MAXES.runSparks(Robot.leftJoystickY * -1);
+    }
+    else if (Robot.leftJoystickY > 0) {
+      SPARK_MAXES.runSparks(Robot.leftJoystickY * -1);
+    }
+    else {
+      SPARK_MAXES.stopSparks();
+    }
+    */
   }
 
   // Called once the command ends or is interrupted.

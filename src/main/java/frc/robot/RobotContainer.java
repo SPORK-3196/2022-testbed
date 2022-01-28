@@ -20,12 +20,13 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final SparkTest spark_subsystem = new SparkTest();
 
-  private final JoystickSparkControl m_autoCommand = new JoystickSparkControl(spark_subsystem);
+  private final JoystickSparkControl joystick_spark = new JoystickSparkControl(spark_subsystem);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+    spark_subsystem.setDefaultCommand(joystick_spark);
   }
 
   /**
@@ -43,6 +44,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_autoCommand;
+    return joystick_spark;
   }
 }

@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -25,13 +26,41 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
 
-  public static XboxController controller;
+  public static XboxController XboxController;
 
-  public static NetworkTableEntry rightTriggerEntry = Shuffleboard.getTab("RoboRIO").add("Right Trigger", 0.0).getEntry();
-  public static NetworkTableEntry leftTriggerEntry = Shuffleboard.getTab("RoboRIO").add("Left Trigger", 0.0).getEntry();
+  public static NetworkTableEntry rightTriggerEntry = Shuffleboard.getTab("User Input").add("Right Trigger", 0.0).getEntry();
+  public static NetworkTableEntry leftTriggerEntry = Shuffleboard.getTab("User Input").add("Left Trigger", 0.0).getEntry();
 
-  public double rightTriggerValue;
-  public double leftTriggerValue;
+  public static NetworkTableEntry rightBumperEntry = Shuffleboard.getTab("User Input").add("Right Bumper", false).getEntry();
+  public static NetworkTableEntry leftBumperEntry = Shuffleboard.getTab("User Input").add("Left Bumper", false).getEntry();
+
+  public static NetworkTableEntry leftJoystickXEntry = Shuffleboard.getTab("User Input").add("Left Joystick X", 0.0).getEntry();
+  public static NetworkTableEntry leftJoystickYEntry = Shuffleboard.getTab("User Input").add("Left Joystick Y", 0.0).getEntry();
+  public static NetworkTableEntry rightJoystickXEntry = Shuffleboard.getTab("User Input").add("Right Joystick X", 0.0).getEntry();
+  public static NetworkTableEntry rightJoystickYEntry = Shuffleboard.getTab("User Input").add("Right Joystick Y", 0.0).getEntry();
+
+  public static NetworkTableEntry controllerXButtonEntry = Shuffleboard.getTab("User Input").add("X Button", false).getEntry();
+  public static NetworkTableEntry controllerYButtonEntry = Shuffleboard.getTab("User Input").add("Y Button", false).getEntry();
+  public static NetworkTableEntry controllerAButtonEntry = Shuffleboard.getTab("User Input").add("A Button", false).getEntry();
+  public static NetworkTableEntry controllerBButtonEntry = Shuffleboard.getTab("User Input").add("B Button", false).getEntry();
+
+  public static double rightTriggerValue;
+  public static double leftTriggerValue;
+
+  public static boolean rightBumper;
+  public static boolean leftBumper;
+
+  public static double leftJoystickX;
+  public static double leftJoystickY;
+  public static double rightJoystickX;
+  public static double rightJoystickY;
+
+  public static boolean controllerXButton;
+  public static boolean controllerYButton;
+  public static boolean controllerAButton;
+  public static boolean controllerBButton;
+  
+
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -42,6 +71,7 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+    XboxController = new XboxController(0);
   }
 
   /**
@@ -58,10 +88,37 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
-    rightTriggerValue = controller.getRightTriggerAxis();
-    leftTriggerValue = controller.getLeftTriggerAxis();
+    rightTriggerValue = XboxController.getRightTriggerAxis();
+    leftTriggerValue = XboxController.getLeftTriggerAxis();
+    rightBumper = XboxController.getRightBumper();
+    leftBumper = XboxController.getLeftBumper();
+
+    leftJoystickX = XboxController.getLeftX();
+    leftJoystickY = XboxController.getLeftY();
+    rightJoystickX = XboxController.getRightX();
+    rightJoystickY = XboxController.getRightY();
+
+    controllerXButton = XboxController.getXButton();
+    controllerYButton = XboxController.getYButton();
+    controllerAButton = XboxController.getAButton();
+    controllerBButton = XboxController.getBButton();
+
+
     rightTriggerEntry.setDouble(rightTriggerValue);
     leftTriggerEntry.setDouble(leftTriggerValue);
+    rightBumperEntry.setBoolean(rightBumper);
+    leftBumperEntry.setBoolean(leftBumper);
+
+    leftJoystickXEntry.setDouble(leftJoystickX);
+    leftJoystickYEntry.setDouble(leftJoystickY);
+    rightJoystickXEntry.setDouble(rightJoystickX);
+    rightJoystickYEntry.setDouble(rightJoystickY);
+
+    controllerXButtonEntry.setBoolean(controllerXButton);
+    controllerYButtonEntry.setBoolean(controllerYButton);
+    controllerAButtonEntry.setBoolean(controllerAButton);
+    controllerBButtonEntry.setBoolean(controllerBButton);
+
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
