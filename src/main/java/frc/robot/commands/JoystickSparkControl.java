@@ -36,17 +36,17 @@ public class JoystickSparkControl extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    /*
+    
     if (Robot.leftJoystickY < 0) {
-      SPARK_MAXES.runSparks(Robot.leftJoystickY * -1);
+      SPARK_MAXES.runSpark1(Robot.leftJoystickY * -1);
     }
     else if (Robot.leftJoystickY > 0) {
-      SPARK_MAXES.runSparks(Robot.leftJoystickY * -1);
+      SPARK_MAXES.runSpark1(Robot.leftJoystickY * -1);
     }
     else {
       SPARK_MAXES.stopSparks();
     }
-    */
+    
   }
 
   // Called once the command ends or is interrupted.
