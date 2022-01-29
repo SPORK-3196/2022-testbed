@@ -37,10 +37,10 @@ public class JoystickSparkControl extends CommandBase {
   @Override
   public void execute() {
     if (Robot.xboxLeftJoystickY < 0) {
-      SPARK_MAXES.runSparks(Robot.xboxLeftJoystickY * -1);
+      SPARK_MAXES.runSparks(Robot.xboxLeftJoystickY);
     }
     else if (Robot.xboxLeftJoystickY > 0) {
-      SPARK_MAXES.runSparks(Robot.xboxLeftJoystickY * -1);
+      SPARK_MAXES.runSparks(Robot.xboxLeftJoystickY);
     }
     else {
       SPARK_MAXES.stopSparks();
@@ -70,8 +70,7 @@ public class JoystickSparkControl extends CommandBase {
     }
     */
 
-    System.out.println("Spark Max 1 [ID 12] " + SPARK_MAXES.sparkMax_1.getOutputCurrent());
-    System.out.println("Spark Max 2 [ID 14] " + SPARK_MAXES.sparkMax_2.getOutputCurrent());
+   
   }
 
   // Called once the command ends or is interrupted.
