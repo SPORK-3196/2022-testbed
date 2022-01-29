@@ -32,8 +32,16 @@ public class SparkTest extends SubsystemBase {
 
   public void stopSparks() {
     sparkMax_1.set(0);
+    sparkMax_2.set(0);
+  }
+
+  public void stopSpark1() {
+    sparkMax_1.set(0);
   }
   
+  public void stopSpark2() {
+    sparkMax_2.set(0);
+  }
 
   @Override
   public void periodic() {

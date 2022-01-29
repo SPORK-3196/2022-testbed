@@ -5,6 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj.XboxController;
@@ -26,6 +27,7 @@ public class Robot extends TimedRobot {
   private RobotContainer m_robotContainer;
 
   public static XboxController XboxController;
+  public static Joystick FlightJoystick;
 
   public static NetworkTableEntry xboxRightTriggerEntry = Shuffleboard.getTab("User Input").add("Right Trigger", 0.0).getEntry();
   public static NetworkTableEntry xboxLeftTriggerEntry = Shuffleboard.getTab("User Input").add("Left Trigger", 0.0).getEntry();
@@ -58,6 +60,15 @@ public class Robot extends TimedRobot {
   public static boolean xboxControllerYButton;
   public static boolean xboxControllerAButton;
   public static boolean xboxControllerBButton;
+
+  /*
+  public static double flightJoystickX;
+  public static double flightJoystickY;
+  public static double flightJoystickZ;
+  public static boolean flightJoystickTrigger;
+  public static boolean flightJoystickTopButton;
+  */
+
   
 
 
@@ -71,6 +82,8 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
     XboxController = new XboxController(0);
+    FlightJoystick = new Joystick(1);
+
   }
 
   /**
@@ -103,6 +116,15 @@ public class Robot extends TimedRobot {
     xboxControllerBButton = XboxController.getBButton();
 
 
+    /*
+    flightJoystickX = FlightJoystick.getX();
+    flightJoystickY = FlightJoystick.getY();
+    flightJoystickZ = FlightJoystick.getZ();
+    flightJoystickTrigger = FlightJoystick.getTrigger();
+    flightJoystickTopButton = FlightJoystick.getTop();
+    */
+
+
     xboxRightTriggerEntry.setDouble(xboxRightTriggerValue);
     xboxLeftTriggerEntry.setDouble(xboxLeftTriggerValue);
     xboxRightBumperEntry.setBoolean(xboxRightBumper);
@@ -117,6 +139,8 @@ public class Robot extends TimedRobot {
     xboxControllerYButtonEntry.setBoolean(xboxControllerYButton);
     xboxControllerAButtonEntry.setBoolean(xboxControllerAButton);
     xboxControllerBButtonEntry.setBoolean(xboxControllerBButton);
+
+
 
   }
 

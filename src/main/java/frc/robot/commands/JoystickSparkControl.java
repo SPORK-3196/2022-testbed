@@ -36,17 +36,42 @@ public class JoystickSparkControl extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    
     if (Robot.xboxLeftJoystickY < 0) {
-      SPARK_MAXES.runSpark1(Robot.xboxLeftJoystickY * -1);
+      SPARK_MAXES.runSparks(Robot.xboxLeftJoystickY * -1);
     }
     else if (Robot.xboxLeftJoystickY > 0) {
-      SPARK_MAXES.runSpark1(Robot.xboxLeftJoystickY * -1);
+      SPARK_MAXES.runSparks(Robot.xboxLeftJoystickY * -1);
     }
     else {
       SPARK_MAXES.stopSparks();
     }
+
+    /*
+    if (Robot.xboxRightJoystickY < 0) {
+      SPARK_MAXES.runSpark2(Robot.xboxRightJoystickY * -1);
+    }
+    else if (Robot.xboxRightJoystickY > 0) {
+      SPARK_MAXES.runSpark2(Robot.xboxRightJoystickY * -1);
+    }
+    else {
+      SPARK_MAXES.stopSpark2();
+    }
+    */
     
+    /*
+    if (Robot.flightJoystickY < 0) {
+      SPARK_MAXES.runSparks(Robot.flightJoystickY * -1);
+    }
+    else if (Robot.xboxLeftJoystickY > 0) {
+      SPARK_MAXES.runSparks(Robot.flightJoystickY * -1);
+    }
+    else {
+      SPARK_MAXES.stopSparks();
+    }
+    */
+
+    System.out.println("Spark Max 1 [ID 12] " + SPARK_MAXES.sparkMax_1.getOutputCurrent());
+    System.out.println("Spark Max 2 [ID 14] " + SPARK_MAXES.sparkMax_2.getOutputCurrent());
   }
 
   // Called once the command ends or is interrupted.
