@@ -27,37 +27,37 @@ public class Robot extends TimedRobot {
 
   public static XboxController XboxController;
 
-  public static NetworkTableEntry rightTriggerEntry = Shuffleboard.getTab("User Input").add("Right Trigger", 0.0).getEntry();
-  public static NetworkTableEntry leftTriggerEntry = Shuffleboard.getTab("User Input").add("Left Trigger", 0.0).getEntry();
+  public static NetworkTableEntry xboxRightTriggerEntry = Shuffleboard.getTab("User Input").add("Right Trigger", 0.0).getEntry();
+  public static NetworkTableEntry xboxLeftTriggerEntry = Shuffleboard.getTab("User Input").add("Left Trigger", 0.0).getEntry();
 
-  public static NetworkTableEntry rightBumperEntry = Shuffleboard.getTab("User Input").add("Right Bumper", false).getEntry();
-  public static NetworkTableEntry leftBumperEntry = Shuffleboard.getTab("User Input").add("Left Bumper", false).getEntry();
+  public static NetworkTableEntry xboxRightBumperEntry = Shuffleboard.getTab("User Input").add("Right Bumper", false).getEntry();
+  public static NetworkTableEntry xboxLeftBumperEntry = Shuffleboard.getTab("User Input").add("Left Bumper", false).getEntry();
 
-  public static NetworkTableEntry leftJoystickXEntry = Shuffleboard.getTab("User Input").add("Left Joystick X", 0.0).getEntry();
-  public static NetworkTableEntry leftJoystickYEntry = Shuffleboard.getTab("User Input").add("Left Joystick Y", 0.0).getEntry();
-  public static NetworkTableEntry rightJoystickXEntry = Shuffleboard.getTab("User Input").add("Right Joystick X", 0.0).getEntry();
-  public static NetworkTableEntry rightJoystickYEntry = Shuffleboard.getTab("User Input").add("Right Joystick Y", 0.0).getEntry();
+  public static NetworkTableEntry xboxLeftJoystickXEntry = Shuffleboard.getTab("User Input").add("Left Joystick X", 0.0).getEntry();
+  public static NetworkTableEntry xboxLeftJoystickYEntry = Shuffleboard.getTab("User Input").add("Left Joystick Y", 0.0).getEntry();
+  public static NetworkTableEntry xboxRightJoystickXEntry = Shuffleboard.getTab("User Input").add("Right Joystick X", 0.0).getEntry();
+  public static NetworkTableEntry xboxRightJoystickYEntry = Shuffleboard.getTab("User Input").add("Right Joystick Y", 0.0).getEntry();
 
-  public static NetworkTableEntry controllerXButtonEntry = Shuffleboard.getTab("User Input").add("X Button", false).getEntry();
-  public static NetworkTableEntry controllerYButtonEntry = Shuffleboard.getTab("User Input").add("Y Button", false).getEntry();
-  public static NetworkTableEntry controllerAButtonEntry = Shuffleboard.getTab("User Input").add("A Button", false).getEntry();
-  public static NetworkTableEntry controllerBButtonEntry = Shuffleboard.getTab("User Input").add("B Button", false).getEntry();
+  public static NetworkTableEntry xboxControllerXButtonEntry = Shuffleboard.getTab("User Input").add("X Button", false).getEntry();
+  public static NetworkTableEntry xboxControllerYButtonEntry = Shuffleboard.getTab("User Input").add("Y Button", false).getEntry();
+  public static NetworkTableEntry xboxControllerAButtonEntry = Shuffleboard.getTab("User Input").add("A Button", false).getEntry();
+  public static NetworkTableEntry xboxControllerBButtonEntry = Shuffleboard.getTab("User Input").add("B Button", false).getEntry();
 
-  public static double rightTriggerValue;
-  public static double leftTriggerValue;
+  public static double xboxRightTriggerValue;
+  public static double xboxLeftTriggerValue;
 
-  public static boolean rightBumper;
-  public static boolean leftBumper;
+  public static boolean xboxRightBumper;
+  public static boolean xboxLeftBumper;
 
-  public static double leftJoystickX;
-  public static double leftJoystickY;
-  public static double rightJoystickX;
-  public static double rightJoystickY;
+  public static double xboxLeftJoystickX;
+  public static double xboxLeftJoystickY;
+  public static double xboxRightJoystickX;
+  public static double xboxRightJoystickY;
 
-  public static boolean controllerXButton;
-  public static boolean controllerYButton;
-  public static boolean controllerAButton;
-  public static boolean controllerBButton;
+  public static boolean xboxControllerXButton;
+  public static boolean xboxControllerYButton;
+  public static boolean xboxControllerAButton;
+  public static boolean xboxControllerBButton;
   
 
 
@@ -87,36 +87,36 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
-    rightTriggerValue = XboxController.getRightTriggerAxis();
-    leftTriggerValue = XboxController.getLeftTriggerAxis();
-    rightBumper = XboxController.getRightBumper();
-    leftBumper = XboxController.getLeftBumper();
+    xboxRightTriggerValue = XboxController.getRightTriggerAxis();
+    xboxLeftTriggerValue = XboxController.getLeftTriggerAxis();
+    xboxRightBumper = XboxController.getRightBumper();
+    xboxLeftBumper = XboxController.getLeftBumper();
 
-    leftJoystickX = XboxController.getLeftX();
-    leftJoystickY = XboxController.getLeftY();
-    rightJoystickX = XboxController.getRightX();
-    rightJoystickY = XboxController.getRightY();
+    xboxLeftJoystickX = XboxController.getLeftX();
+    xboxLeftJoystickY = XboxController.getLeftY();
+    xboxRightJoystickX = XboxController.getRightX();
+    xboxRightJoystickY = XboxController.getRightY();
 
-    controllerXButton = XboxController.getXButton();
-    controllerYButton = XboxController.getYButton();
-    controllerAButton = XboxController.getAButton();
-    controllerBButton = XboxController.getBButton();
+    xboxControllerXButton = XboxController.getXButton();
+    xboxControllerYButton = XboxController.getYButton();
+    xboxControllerAButton = XboxController.getAButton();
+    xboxControllerBButton = XboxController.getBButton();
 
 
-    rightTriggerEntry.setDouble(rightTriggerValue);
-    leftTriggerEntry.setDouble(leftTriggerValue);
-    rightBumperEntry.setBoolean(rightBumper);
-    leftBumperEntry.setBoolean(leftBumper);
+    xboxRightTriggerEntry.setDouble(xboxRightTriggerValue);
+    xboxLeftTriggerEntry.setDouble(xboxLeftTriggerValue);
+    xboxRightBumperEntry.setBoolean(xboxRightBumper);
+    xboxLeftBumperEntry.setBoolean(xboxLeftBumper);
 
-    leftJoystickXEntry.setDouble(leftJoystickX);
-    leftJoystickYEntry.setDouble(leftJoystickY);
-    rightJoystickXEntry.setDouble(rightJoystickX);
-    rightJoystickYEntry.setDouble(rightJoystickY);
+    xboxLeftJoystickXEntry.setDouble(xboxLeftJoystickX);
+    xboxLeftJoystickYEntry.setDouble(xboxLeftJoystickY);
+    xboxRightJoystickXEntry.setDouble(xboxRightJoystickX);
+    xboxRightJoystickYEntry.setDouble(xboxRightJoystickY);
 
-    controllerXButtonEntry.setBoolean(controllerXButton);
-    controllerYButtonEntry.setBoolean(controllerYButton);
-    controllerAButtonEntry.setBoolean(controllerAButton);
-    controllerBButtonEntry.setBoolean(controllerBButton);
+    xboxControllerXButtonEntry.setBoolean(xboxControllerXButton);
+    xboxControllerYButtonEntry.setBoolean(xboxControllerYButton);
+    xboxControllerAButtonEntry.setBoolean(xboxControllerAButton);
+    xboxControllerBButtonEntry.setBoolean(xboxControllerBButton);
 
   }
 

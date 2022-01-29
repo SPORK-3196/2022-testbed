@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class JoystickSparkControl extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   
-  SparkTest SPARK_MAXES = new SparkTest() ;
+  SparkTest SPARK_MAXES;
   
 
   /**
@@ -37,11 +37,11 @@ public class JoystickSparkControl extends CommandBase {
   @Override
   public void execute() {
     
-    if (Robot.leftJoystickY < 0) {
-      SPARK_MAXES.runSpark1(Robot.leftJoystickY * -1);
+    if (Robot.xboxLeftJoystickY < 0) {
+      SPARK_MAXES.runSpark1(Robot.xboxLeftJoystickY * -1);
     }
-    else if (Robot.leftJoystickY > 0) {
-      SPARK_MAXES.runSpark1(Robot.leftJoystickY * -1);
+    else if (Robot.xboxLeftJoystickY > 0) {
+      SPARK_MAXES.runSpark1(Robot.xboxLeftJoystickY * -1);
     }
     else {
       SPARK_MAXES.stopSparks();
