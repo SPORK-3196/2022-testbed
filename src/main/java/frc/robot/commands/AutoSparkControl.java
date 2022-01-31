@@ -38,12 +38,14 @@ public class AutoSparkControl extends CommandBase {
   @Override
   public void execute() {
     
+    
     if (Constants.AutoSparkFire) {
       SPARK_MAXES.runSparks(Constants.AutoSparkPower);
     }
     else {
       SPARK_MAXES.stopSparks();
     }
+    
     
   }
 

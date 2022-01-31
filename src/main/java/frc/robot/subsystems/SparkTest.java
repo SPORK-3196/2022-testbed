@@ -9,6 +9,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class SparkTest extends SubsystemBase {
+  
   public CANSparkMax sparkMax_1 = new CANSparkMax(12, MotorType.kBrushless);
   public CANSparkMax sparkMax_2 = new CANSparkMax(14, MotorType.kBrushless);
   
@@ -16,7 +17,7 @@ public class SparkTest extends SubsystemBase {
   public SparkTest() {
     sparkMax_2.setInverted(true);
   }
-
+  
   public void runSpark1 (double power) {
     sparkMax_1.set(power);
   }
@@ -34,6 +35,7 @@ public class SparkTest extends SubsystemBase {
     sparkMax_1.stopMotor();
     sparkMax_2.stopMotor();
   }
+  
   
 
   @Override

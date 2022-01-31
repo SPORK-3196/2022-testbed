@@ -47,6 +47,7 @@ public class JoystickSparkControl extends CommandBase {
       SPARK_MAXES.stopSparks();
     }
     
+    
   }
 
   // Called once the command ends or is interrupted.
