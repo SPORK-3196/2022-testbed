@@ -14,7 +14,7 @@ public class SparkTest extends SubsystemBase {
   
   /** Creates a new ExampleSubsystem. */
   public SparkTest() {
-
+    sparkMax_2.setInverted(true);
   }
 
   public void runSpark1 (double power) {
@@ -31,7 +31,8 @@ public class SparkTest extends SubsystemBase {
   }
 
   public void stopSparks() {
-    sparkMax_1.set(0);
+    sparkMax_1.stopMotor();
+    sparkMax_2.stopMotor();
   }
   
 
