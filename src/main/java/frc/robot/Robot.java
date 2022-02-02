@@ -4,13 +4,11 @@
 
 package frc.robot;
 
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.Constants;
 
 
 
@@ -29,48 +27,9 @@ public class Robot extends TimedRobot {
   public static XboxController XboxController;
   public static Joystick FlightJoystick;
 
-  public static NetworkTableEntry xboxRightTriggerEntry = Shuffleboard.getTab("User Input").add("Right Trigger", 0.0).getEntry();
-  public static NetworkTableEntry xboxLeftTriggerEntry = Shuffleboard.getTab("User Input").add("Left Trigger", 0.0).getEntry();
-
-  public static NetworkTableEntry xboxRightBumperEntry = Shuffleboard.getTab("User Input").add("Right Bumper", false).getEntry();
-  public static NetworkTableEntry xboxLeftBumperEntry = Shuffleboard.getTab("User Input").add("Left Bumper", false).getEntry();
-
-  public static NetworkTableEntry xboxLeftJoystickXEntry = Shuffleboard.getTab("User Input").add("Left Joystick X", 0.0).getEntry();
-  public static NetworkTableEntry xboxLeftJoystickYEntry = Shuffleboard.getTab("User Input").add("Left Joystick Y", 0.0).getEntry();
-  public static NetworkTableEntry xboxRightJoystickXEntry = Shuffleboard.getTab("User Input").add("Right Joystick X", 0.0).getEntry();
-  public static NetworkTableEntry xboxRightJoystickYEntry = Shuffleboard.getTab("User Input").add("Right Joystick Y", 0.0).getEntry();
-
-  public static NetworkTableEntry xboxControllerXButtonEntry = Shuffleboard.getTab("User Input").add("X Button", false).getEntry();
-  public static NetworkTableEntry xboxControllerYButtonEntry = Shuffleboard.getTab("User Input").add("Y Button", false).getEntry();
-  public static NetworkTableEntry xboxControllerAButtonEntry = Shuffleboard.getTab("User Input").add("A Button", false).getEntry();
-  public static NetworkTableEntry xboxControllerBButtonEntry = Shuffleboard.getTab("User Input").add("B Button", false).getEntry();
-
-  public static double xboxRightTriggerValue;
-  public static double xboxLeftTriggerValue;
-
-  public static boolean xboxRightBumper;
-  public static boolean xboxLeftBumper;
-
-  public static double xboxLeftJoystickX;
-  public static double xboxLeftJoystickY;
-  public static double xboxRightJoystickX;
-  public static double xboxRightJoystickY;
-
-  public static boolean xboxControllerXButton;
-  public static boolean xboxControllerYButton;
-  public static boolean xboxControllerAButton;
-  public static boolean xboxControllerBButton;
-
-  /*
-  public static double flightJoystickX;
-  public static double flightJoystickY;
-  public static double flightJoystickZ;
-  public static boolean flightJoystickTrigger;
-  public static boolean flightJoystickTopButton;
-  */
 
   
-
+  
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -82,8 +41,8 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
     XboxController = new XboxController(0);
-    FlightJoystick = new Joystick(1);
-
+    Constants.AutoSparkFireEntry.setBoolean(Constants.AutoSparkFire);
+    Constants.AutoSparkPowerEntry.setDouble(Constants.AutoSparkPower);
   }
 
   /**
@@ -100,48 +59,41 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
-    xboxRightTriggerValue = XboxController.getRightTriggerAxis();
-    xboxLeftTriggerValue = XboxController.getLeftTriggerAxis();
-    xboxRightBumper = XboxController.getRightBumper();
-    xboxLeftBumper = XboxController.getLeftBumper();
 
-    xboxLeftJoystickX = XboxController.getLeftX();
-    xboxLeftJoystickY = XboxController.getLeftY();
-    xboxRightJoystickX = XboxController.getRightX();
-    xboxRightJoystickY = XboxController.getRightY();
+    // Retrieves values from the XboxController object and stores them in the variables initialized in Constants.java
+    Constants.xboxRightTriggerValue = XboxController.getRightTriggerAxis();
+    Constants.xboxLeftTriggerValue = XboxController.getLeftTriggerAxis();
+    Constants.xboxRightBumper = XboxController.getRightBumper();
+    Constants.xboxLeftBumper = XboxController.getLeftBumper();
 
-    xboxControllerXButton = XboxController.getXButton();
-    xboxControllerYButton = XboxController.getYButton();
-    xboxControllerAButton = XboxController.getAButton();
-    xboxControllerBButton = XboxController.getBButton();
+    Constants.xboxLeftJoystickX = XboxController.getLeftX();
+    Constants.xboxLeftJoystickY = XboxController.getLeftY();
+    Constants.xboxRightJoystickX = XboxController.getRightX();
+    Constants.xboxRightJoystickY = XboxController.getRightY();
 
+    Constants.xboxControllerXButton = XboxController.getXButton();
+    Constants.xboxControllerYButton = XboxController.getYButton();
+    Constants.xboxControllerAButton = XboxController.getAButton();
+    Constants.xboxControllerBButton = XboxController.getBButton();
 
-    /*
-    flightJoystickX = FlightJoystick.getX();
-    flightJoystickY = FlightJoystick.getY();
-    flightJoystickZ = FlightJoystick.getZ();
-    flightJoystickTrigger = FlightJoystick.getTrigger();
-    flightJoystickTopButton = FlightJoystick.getTop();
-    */
+    // Stores values stored in the controller variables and sends the information to the NetworkTable Entries
+    Constants.xboxRightTriggerEntry.setDouble(Constants.xboxRightTriggerValue);
+    Constants.xboxLeftTriggerEntry.setDouble(Constants.xboxLeftTriggerValue);
+    Constants.xboxRightBumperEntry.setBoolean(Constants.xboxRightBumper);
+    Constants.xboxLeftBumperEntry.setBoolean(Constants.xboxLeftBumper);
 
+    Constants.xboxLeftJoystickXEntry.setDouble(Constants.xboxLeftJoystickX);
+    Constants.xboxLeftJoystickYEntry.setDouble(Constants.xboxLeftJoystickY);
+    Constants.xboxRightJoystickXEntry.setDouble(Constants.xboxRightJoystickX);
+    Constants.xboxRightJoystickYEntry.setDouble(Constants.xboxRightJoystickY);
 
-    xboxRightTriggerEntry.setDouble(xboxRightTriggerValue);
-    xboxLeftTriggerEntry.setDouble(xboxLeftTriggerValue);
-    xboxRightBumperEntry.setBoolean(xboxRightBumper);
-    xboxLeftBumperEntry.setBoolean(xboxLeftBumper);
+    Constants.xboxControllerXButtonEntry.setBoolean(Constants.xboxControllerXButton);
+    Constants.xboxControllerYButtonEntry.setBoolean(Constants.xboxControllerYButton);
+    Constants.xboxControllerAButtonEntry.setBoolean(Constants.xboxControllerAButton);
+    Constants.xboxControllerBButtonEntry.setBoolean(Constants.xboxControllerBButton);
 
-    xboxLeftJoystickXEntry.setDouble(xboxLeftJoystickX);
-    xboxLeftJoystickYEntry.setDouble(xboxLeftJoystickY);
-    xboxRightJoystickXEntry.setDouble(xboxRightJoystickX);
-    xboxRightJoystickYEntry.setDouble(xboxRightJoystickY);
-
-    xboxControllerXButtonEntry.setBoolean(xboxControllerXButton);
-    xboxControllerYButtonEntry.setBoolean(xboxControllerYButton);
-    xboxControllerAButtonEntry.setBoolean(xboxControllerAButton);
-    xboxControllerBButtonEntry.setBoolean(xboxControllerBButton);
-
-
-
+    Constants.AutoSparkFire = Constants.AutoSparkFireEntry.getBoolean(false);
+    Constants.AutoSparkPower = Constants.AutoSparkPowerEntry.getDouble(0.2);
   }
 
   /** This function is called once each time the robot enters Disabled mode. */

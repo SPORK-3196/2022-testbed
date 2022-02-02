@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 
 /** An example command that uses an example subsystem. */
-public class JoystickSparkControl extends CommandBase {
+public class AutoSparkControl extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   
   SparkTest SPARK_MAXES;
@@ -21,7 +21,7 @@ public class JoystickSparkControl extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public JoystickSparkControl(SparkTest sparkMaxSubsystem) {
+  public AutoSparkControl(SparkTest sparkMaxSubsystem) {
     SPARK_MAXES = sparkMaxSubsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(SPARK_MAXES);
@@ -30,6 +30,7 @@ public class JoystickSparkControl extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    Constants.AutoSparkFire = true;
 
   }
 
@@ -37,27 +38,13 @@ public class JoystickSparkControl extends CommandBase {
   @Override
   public void execute() {
     
-    if (Constants.xboxLeftJoystickY < 0) {
-      SPARK_MAXES.runSpark1(Constants.xboxLeftJoystickY * -1);
-    }
-    else if (Constants.xboxLeftJoystickY > 0) {
-      SPARK_MAXES.runSpark1(Constants.xboxLeftJoystickY * -1);
+    
+    if (Constants.AutoSparkFire) {
+      SPARK_MAXES.runSparks(Constants.AutoSparkPower);
     }
     else {
       SPARK_MAXES.stopSparks();
     }
-
-    /*
-    if (Robot.xboxRightJoystickY < 0) {
-      SPARK_MAXES.runSpark2(Robot.xboxRightJoystickY * -1);
-    }
-    else if (Robot.xboxRightJoystickY > 0) {
-      SPARK_MAXES.runSpark2(Robot.xboxRightJoystickY * -1);
-    }
-    else {
-      SPARK_MAXES.stopSpark2();
-    }
-    */
     
     
   }
