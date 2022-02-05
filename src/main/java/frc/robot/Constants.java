@@ -24,6 +24,7 @@ public final class Constants {
     public static ShuffleboardTab XboxInput1 =  Shuffleboard.getTab("Xbox Controller #1");
     public static ShuffleboardTab XboxInput2 =  Shuffleboard.getTab("Xbox Controller #2");
     public static ShuffleboardTab AutoControls =  Shuffleboard.getTab("Autonomous Controls");
+    public static ShuffleboardTab shooterTab =  Shuffleboard.getTab("Shooter");
 
     //Create variables and NetworkTableEntries to store input from xbox controller (0)
     
@@ -66,4 +67,15 @@ public final class Constants {
 
     public static NetworkTableEntry AutoSparkFireEntry = AutoControls.add("Run Spark MAXes During Auto?", false).getEntry();
     public static NetworkTableEntry AutoSparkPowerEntry = AutoControls.add("Set Spark Power", 0.0).getEntry();
+
+    public static NetworkTableEntry Encoder_RPM_Entry = shooterTab.add("SPARK RPM", 0.0).getEntry();
+    public static NetworkTableEntry Encoder_MPH_Entry = shooterTab.add("SPARK MPH", 0.0).getEntry();
+
+    public static NetworkTableEntry sparkP = shooterTab.add("SPARK P", 0.0).getEntry();
+    public static NetworkTableEntry sparkI = shooterTab.add("SPARK I", 0.0).getEntry();
+    public static NetworkTableEntry sparkD = shooterTab.add("SPARK D", 0.0).getEntry();
+
+    public static NetworkTableEntry sparkPower = shooterTab.add("SPARK Power", 0.0).getEntry();
+
+
 }

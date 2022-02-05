@@ -25,7 +25,7 @@ public class Robot extends TimedRobot {
   private RobotContainer m_robotContainer;
 
   public static XboxController XboxController;
-  public static Joystick FlightJoystick;
+
 
 
   
@@ -94,6 +94,8 @@ public class Robot extends TimedRobot {
 
     Constants.AutoSparkFire = Constants.AutoSparkFireEntry.getBoolean(false);
     Constants.AutoSparkPower = Constants.AutoSparkPowerEntry.getDouble(0.2);
+
+
   }
 
   /** This function is called once each time the robot enters Disabled mode. */

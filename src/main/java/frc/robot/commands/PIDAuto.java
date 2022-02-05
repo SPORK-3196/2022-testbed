@@ -6,22 +6,28 @@ package frc.robot.commands;
 
 import frc.robot.subsystems.SparkTest;
 import static frc.robot.Constants.*;
+
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 
 /** An example command that uses an example subsystem. */
-public class AutoSparkControl extends CommandBase {
+public class PIDAuto extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   
   SparkTest SPARK_MAXES;
-  
+
+
 
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public AutoSparkControl(SparkTest sparkMaxSubsystem) {
+
+
+
+  public PIDAuto(SparkTest sparkMaxSubsystem) {
     SPARK_MAXES = sparkMaxSubsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(SPARK_MAXES);
@@ -34,7 +40,8 @@ public class AutoSparkControl extends CommandBase {
   @Override
   public void initialize() {
     AutoSparkFire = true;
-
+    SPARK_MAXES.setSetpoint(3000);
+    SPARK_MAXES.runSparks(0.2);
 
   }
 
@@ -44,7 +51,7 @@ public class AutoSparkControl extends CommandBase {
     
     
     if (AutoSparkFire) {
-      SPARK_MAXES.runSparks(AutoSparkPower);
+      SPARK_MAXES.runSparks(SPARK_MAXES.getController().calculate(SPARK_MAXES.sparkEncoder.getVelocity()));
     }
     else {
       SPARK_MAXES.stopSparks();

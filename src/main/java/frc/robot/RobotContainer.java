@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.AutoSparkControl;
 import frc.robot.commands.JoystickSparkControl;
+import frc.robot.commands.PIDAuto;
 import frc.robot.subsystems.SparkTest;
 import edu.wpi.first.wpilibj2.command.Command;
 
