@@ -27,8 +27,6 @@ public class AutoSparkControl extends CommandBase {
     addRequirements(SPARK_MAXES);
   }
 
-  private void addRequirements(SparkTest sPARK_MAXES2) {
-  }
 
   // Called when the command is initially scheduled.
   @Override

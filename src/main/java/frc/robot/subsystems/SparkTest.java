@@ -15,27 +15,29 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class SparkTest extends SubsystemBase {
   
-  public CANSparkMax sparkMaxLead = new CANSparkMax(12, MotorType.kBrushless);
-  public CANSparkMax sparkMaxFollower = new CANSparkMax(14, MotorType.kBrushless);
+  public CANSparkMax sparkMax1 = new CANSparkMax(12, MotorType.kBrushless);
+  public CANSparkMax sparkMax2 = new CANSparkMax(14, MotorType.kBrushless);
   
 
-  public RelativeEncoder sparkEncoder = sparkMaxLead.getEncoder();
-  public SparkMaxPIDController sparkPIDController = sparkMaxLead.getPIDController();
+  public RelativeEncoder sparkEncoder = sparkMax1.getEncoder();
+  public PIDController sparkPIDController = new PIDController(5e-5, 1e-6, 0);
 
   public double sparkVelocity;
   
   /** Creates a new SparkTest. */
   public SparkTest() {
-    sparkMaxFollower.follow(sparkMaxLead, true);
+    sparkMax2.setInverted(true);
   }
   
  
   public void runSparks (double power) {
-    sparkMaxLead.set(power * -1);
+    sparkMax1.set(power * -1);
+    sparkMax2.set(power * -1);
   }
 
   public void stopSparks() {
-    sparkMaxLead.stopMotor();
+    sparkMax1.stopMotor();
+    sparkMax2.stopMotor();
     
   }
 

@@ -7,7 +7,8 @@ package frc.robot.commands;
 import frc.robot.subsystems.SparkTest;
 import static frc.robot.Constants.*;
 
-import com.revrobotics.CANSparkMax.ControlType;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.ControlType;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -18,6 +19,7 @@ public class PIDAuto extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   
   SparkTest SPARK_MAXES;
+   
 
 
   /**
@@ -32,18 +34,13 @@ public class PIDAuto extends CommandBase {
     addRequirements(SPARK_MAXES);
   }
 
-  private void addRequirements(SparkTest sPARK_MAXES2) {
-  }
-
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    SPARK_MAXES.sparkPIDController.setP(5e-5);
-    SPARK_MAXES.sparkPIDController.setI(1e-6);
-    SPARK_MAXES.sparkPIDController.setD(0); 
-    SPARK_MAXES.sparkPIDController.setIZone(0);
-    SPARK_MAXES.sparkPIDController.setFF(0.000156);
-    SPARK_MAXES.sparkPIDController.setOutputRange(1000, 5700);
+    SPARK_MAXES.sparkPIDController.setP(sparkPEntry.getDouble(5e-5));
+    SPARK_MAXES.sparkPIDController.setI(sparkIEntry.getDouble(1e-6));
+    SPARK_MAXES.sparkPIDController.setD(sparkDEntry.getDouble(0.0)); 
+    SPARK_MAXES.sparkPIDController.setSetpoint(3000);
     AutoSparkFire = true;
   }
     
@@ -51,8 +48,11 @@ public class PIDAuto extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    SPARK_MAXES.sparkPIDController.setReference(3000, ControlType.kVelocity);
-    
+    SPARK_MAXES.sparkPIDController.setP(sparkPEntry.getDouble(5e-5));
+    SPARK_MAXES.sparkPIDController.setI(sparkIEntry.getDouble(1e-6));
+    SPARK_MAXES.sparkPIDController.setD(sparkDEntry.getDouble(0.0)); 
+    System.out.println(SPARK_MAXES.sparkPIDController.calculate(-1 * SPARK_MAXES.sparkVelocity));
+    SPARK_MAXES.runSparks(SPARK_MAXES.sparkPIDController.calculate(-1 * SPARK_MAXES.sparkVelocity));
   }
 
   // Called once the command ends or is interrupted.
