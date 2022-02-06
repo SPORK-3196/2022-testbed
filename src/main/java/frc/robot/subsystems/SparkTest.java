@@ -21,6 +21,8 @@ public class SparkTest extends SubsystemBase {
 
   public RelativeEncoder sparkEncoder = sparkMaxLead.getEncoder();
   public SparkMaxPIDController sparkPIDController = sparkMaxLead.getPIDController();
+
+  public double sparkVelocity;
   
   /** Creates a new SparkTest. */
   public SparkTest() {
@@ -41,8 +43,11 @@ public class SparkTest extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    Encoder_RPM_Entry.setDouble(sparkEncoder.getVelocity());
-    Encoder_MPH_Entry.setDouble((((sparkEncoder.getVelocity() * 3) / 12) * 60) / 5280);
+    sparkVelocity = sparkEncoder.getVelocity();
+
+    Encoder_RPM_Entry.setDouble(sparkVelocity);
+
+    Encoder_MPH_Entry.setDouble( ((sparkVelocity * SparkWheelRadiusDiameter) * 60 * Math.PI) / 63360 );
   }
 
   @Override
