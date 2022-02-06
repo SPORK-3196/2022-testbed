@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
+import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import static frc.robot.Constants.*;
 
@@ -12,48 +13,30 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.PIDSubsystem;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class SparkTest extends PIDSubsystem {
+public class SparkTest extends SubsystemBase {
   
-  public CANSparkMax sparkMax_1 = new CANSparkMax(12, MotorType.kBrushless);
-  public CANSparkMax sparkMax_2 = new CANSparkMax(14, MotorType.kBrushless);
+  public CANSparkMax sparkMaxLead = new CANSparkMax(12, MotorType.kBrushless);
+  public CANSparkMax sparkMaxFollower = new CANSparkMax(14, MotorType.kBrushless);
+  
 
-  public RelativeEncoder sparkEncoder = sparkMax_1.getEncoder();
+  public RelativeEncoder sparkEncoder = sparkMaxLead.getEncoder();
+  public SparkMaxPIDController sparkPIDController = sparkMaxLead.getPIDController();
   
-  /** Creates a new ExampleSubsystem. */
+  /** Creates a new SparkTest. */
   public SparkTest() {
-    super(
-      new PIDController(sparkP.getDouble(0.0), sparkI.getDouble(0.0), sparkD.getDouble(0.0)));
-    sparkMax_2.setInverted(true);
+    sparkMaxFollower.follow(sparkMaxLead, true);
   }
   
-  public void runSpark1 (double power) {
-    sparkMax_1.set(power * -1);
-  }
-
+ 
   public void runSparks (double power) {
-    sparkMax_1.set(power * -1);
-    sparkMax_2.set(power * -1);
-  }
-
-  public void runSpark2 (double power) {
-    sparkMax_2.set(power * -1);
+    sparkMaxLead.set(power * -1);
   }
 
   public void stopSparks() {
-    sparkMax_1.stopMotor();
-    sparkMax_2.stopMotor();
+    sparkMaxLead.stopMotor();
+    
   }
 
-  public void stopSpark1() {
-    sparkMax_1.set(0);
-  }
-  
-  public void stopSpark2() {
-    sparkMax_2.set(0);
-  }
-  
-  
-  
 
   @Override
   public void periodic() {
@@ -68,15 +51,4 @@ public class SparkTest extends PIDSubsystem {
   }
 
 
-  @Override
-  protected void useOutput(double output, double setpoint) {
-    // TODO Auto-generated method stub
-    
-  }
-
-  @Override
-  protected double getMeasurement() {
-    // TODO Auto-generated method stub
-    return 0;
-  }
 }

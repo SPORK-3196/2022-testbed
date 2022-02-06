@@ -7,6 +7,8 @@ package frc.robot.commands;
 import frc.robot.subsystems.SparkTest;
 import static frc.robot.Constants.*;
 
+import com.revrobotics.CANSparkMax.ControlType;
+
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
@@ -18,14 +20,11 @@ public class PIDAuto extends CommandBase {
   SparkTest SPARK_MAXES;
 
 
-
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-
-
 
   public PIDAuto(SparkTest sparkMaxSubsystem) {
     SPARK_MAXES = sparkMaxSubsystem;
@@ -39,30 +38,28 @@ public class PIDAuto extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    SPARK_MAXES.sparkPIDController.setP(5e-5);
+    SPARK_MAXES.sparkPIDController.setI(1e-6);
+    SPARK_MAXES.sparkPIDController.setD(0); 
+    SPARK_MAXES.sparkPIDController.setIZone(0);
+    SPARK_MAXES.sparkPIDController.setFF(0.000156);
+    SPARK_MAXES.sparkPIDController.setOutputRange(1000, 5700);
     AutoSparkFire = true;
-    SPARK_MAXES.setSetpoint(3000);
-    SPARK_MAXES.runSparks(0.2);
-
   }
+    
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    
-    
-    if (AutoSparkFire) {
-      SPARK_MAXES.runSparks(SPARK_MAXES.getController().calculate(SPARK_MAXES.sparkEncoder.getVelocity()));
-    }
-    else {
-      SPARK_MAXES.stopSparks();
-    }
-    
+    SPARK_MAXES.sparkPIDController.setReference(3000, ControlType.kVelocity);
     
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+
+  }
 
   // Returns true when the command should end.
   @Override

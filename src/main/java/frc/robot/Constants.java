@@ -68,12 +68,19 @@ public final class Constants {
     public static NetworkTableEntry AutoSparkFireEntry = AutoControls.add("Run Spark MAXes During Auto?", false).getEntry();
     public static NetworkTableEntry AutoSparkPowerEntry = AutoControls.add("Set Spark Power", 0.0).getEntry();
 
+    public static double SparkWheelRadiusInches = 3;
+    public static double SparkWheelRadiusDiameter = 6;
+
     public static NetworkTableEntry Encoder_RPM_Entry = shooterTab.add("SPARK RPM", 0.0).getEntry();
     public static NetworkTableEntry Encoder_MPH_Entry = shooterTab.add("SPARK MPH", 0.0).getEntry();
 
-    public static NetworkTableEntry sparkP = shooterTab.add("SPARK P", 0.0).getEntry();
-    public static NetworkTableEntry sparkI = shooterTab.add("SPARK I", 0.0).getEntry();
-    public static NetworkTableEntry sparkD = shooterTab.add("SPARK D", 0.0).getEntry();
+    public static double sparkP = 0.0;
+    public static double sparkI = 0.0;
+    public static double sparkD = 0.0;
+
+    public static NetworkTableEntry sparkPEntry = shooterTab.add("SPARK P", 0.0).getEntry();
+    public static NetworkTableEntry sparkIEntry = shooterTab.add("SPARK I", 0.0).getEntry();
+    public static NetworkTableEntry sparkDEntry = shooterTab.add("SPARK D", 0.0).getEntry();
 
     public static NetworkTableEntry sparkPower = shooterTab.add("SPARK Power", 0.0).getEntry();
 

@@ -6,6 +6,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import frc.robot.commands.AutoSparkControl;
 import frc.robot.commands.JoystickSparkControl;
 import frc.robot.commands.PIDAuto;
@@ -22,7 +23,8 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   
   private final SparkTest spark_subsystem = new SparkTest();
-  private final AutoSparkControl auto_spark = new AutoSparkControl(spark_subsystem);
+  private final AutoSparkControl humanAutoSparkControl = new AutoSparkControl(spark_subsystem);
+  private final PIDAuto PIDAutoSparkControl = new PIDAuto(spark_subsystem);
   private final JoystickSparkControl joystick_spark = new JoystickSparkControl(spark_subsystem);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -47,6 +49,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return auto_spark;
+    return PIDAutoSparkControl;
   }
 }

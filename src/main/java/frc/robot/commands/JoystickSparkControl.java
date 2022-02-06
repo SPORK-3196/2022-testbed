@@ -5,7 +5,7 @@
 package frc.robot.commands;
 
 import frc.robot.subsystems.SparkTest;
-import frc.robot.Constants;
+import static frc.robot.Constants.*;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 
@@ -37,15 +37,8 @@ public class JoystickSparkControl extends CommandBase {
   @Override
   public void execute() {
     
-    if (Constants.xboxLeftJoystickY < 0) {
-      SPARK_MAXES.runSpark1(Constants.xboxLeftJoystickY * -1);
-    }
-    else if (Constants.xboxLeftJoystickY > 0) {
-      SPARK_MAXES.runSpark1(Constants.xboxLeftJoystickY * -1);
-    }
-    else {
-      SPARK_MAXES.stopSparks();
-    }
+    SPARK_MAXES.runSparks(xboxLeftJoystickY * -1);
+    
 
     /*
     if (Robot.xboxRightJoystickY < 0) {

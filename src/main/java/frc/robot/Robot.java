@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.Constants;
+import static frc.robot.Constants.*;
 
 
 
@@ -61,40 +61,43 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().run();
 
     // Retrieves values from the XboxController object and stores them in the variables initialized in Constants.java
-    Constants.xboxRightTriggerValue = XboxController.getRightTriggerAxis();
-    Constants.xboxLeftTriggerValue = XboxController.getLeftTriggerAxis();
-    Constants.xboxRightBumper = XboxController.getRightBumper();
-    Constants.xboxLeftBumper = XboxController.getLeftBumper();
+    xboxRightTriggerValue = XboxController.getRightTriggerAxis();
+    xboxLeftTriggerValue = XboxController.getLeftTriggerAxis();
+    xboxRightBumper = XboxController.getRightBumper();
+    xboxLeftBumper = XboxController.getLeftBumper();
 
-    Constants.xboxLeftJoystickX = XboxController.getLeftX();
-    Constants.xboxLeftJoystickY = XboxController.getLeftY();
-    Constants.xboxRightJoystickX = XboxController.getRightX();
-    Constants.xboxRightJoystickY = XboxController.getRightY();
+    xboxLeftJoystickX = XboxController.getLeftX();
+    xboxLeftJoystickY = XboxController.getLeftY();
+    xboxRightJoystickX = XboxController.getRightX();
+    xboxRightJoystickY = XboxController.getRightY();
 
-    Constants.xboxControllerXButton = XboxController.getXButton();
-    Constants.xboxControllerYButton = XboxController.getYButton();
-    Constants.xboxControllerAButton = XboxController.getAButton();
-    Constants.xboxControllerBButton = XboxController.getBButton();
+    xboxControllerXButton = XboxController.getXButton();
+    xboxControllerYButton = XboxController.getYButton();
+    xboxControllerAButton = XboxController.getAButton();
+    xboxControllerBButton = XboxController.getBButton();
 
     // Stores values stored in the controller variables and sends the information to the NetworkTable Entries
-    Constants.xboxRightTriggerEntry.setDouble(Constants.xboxRightTriggerValue);
-    Constants.xboxLeftTriggerEntry.setDouble(Constants.xboxLeftTriggerValue);
-    Constants.xboxRightBumperEntry.setBoolean(Constants.xboxRightBumper);
-    Constants.xboxLeftBumperEntry.setBoolean(Constants.xboxLeftBumper);
+    xboxRightTriggerEntry.setDouble(xboxRightTriggerValue);
+    xboxLeftTriggerEntry.setDouble(xboxLeftTriggerValue);
+    xboxRightBumperEntry.setBoolean(xboxRightBumper);
+    xboxLeftBumperEntry.setBoolean(xboxLeftBumper);
 
-    Constants.xboxLeftJoystickXEntry.setDouble(Constants.xboxLeftJoystickX);
-    Constants.xboxLeftJoystickYEntry.setDouble(Constants.xboxLeftJoystickY);
-    Constants.xboxRightJoystickXEntry.setDouble(Constants.xboxRightJoystickX);
-    Constants.xboxRightJoystickYEntry.setDouble(Constants.xboxRightJoystickY);
+    xboxLeftJoystickXEntry.setDouble(xboxLeftJoystickX);
+    xboxLeftJoystickYEntry.setDouble(xboxLeftJoystickY);
+    xboxRightJoystickXEntry.setDouble(xboxRightJoystickX);
+    xboxRightJoystickYEntry.setDouble(xboxRightJoystickY);
 
-    Constants.xboxControllerXButtonEntry.setBoolean(Constants.xboxControllerXButton);
-    Constants.xboxControllerYButtonEntry.setBoolean(Constants.xboxControllerYButton);
-    Constants.xboxControllerAButtonEntry.setBoolean(Constants.xboxControllerAButton);
-    Constants.xboxControllerBButtonEntry.setBoolean(Constants.xboxControllerBButton);
+    xboxControllerXButtonEntry.setBoolean(xboxControllerXButton);
+    xboxControllerYButtonEntry.setBoolean(xboxControllerYButton);
+    xboxControllerAButtonEntry.setBoolean(xboxControllerAButton);
+    xboxControllerBButtonEntry.setBoolean(xboxControllerBButton);
 
-    Constants.AutoSparkFire = Constants.AutoSparkFireEntry.getBoolean(false);
-    Constants.AutoSparkPower = Constants.AutoSparkPowerEntry.getDouble(0.2);
+    AutoSparkFire = AutoSparkFireEntry.getBoolean(false);
+    AutoSparkPower = AutoSparkPowerEntry.getDouble(0.2);
 
+    sparkP = sparkPEntry.getDouble(sparkP);
+    sparkI = sparkIEntry.getDouble(sparkI);
+    sparkD = sparkDEntry.getDouble(sparkD);
 
   }
 
