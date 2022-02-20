@@ -95,9 +95,14 @@ public class Robot extends TimedRobot {
     AutoSparkFire = AutoSparkFireEntry.getBoolean(false);
     AutoSparkPower = AutoSparkPowerEntry.getDouble(0.2);
 
+    
+
     sparkP = sparkPEntry.getDouble(sparkP);
     sparkI = sparkIEntry.getDouble(sparkI);
     sparkD = sparkDEntry.getDouble(sparkD);
+
+    sparkTargetRPM = sparkTargetRPMEntry.getDouble(3000);
+    sparkTargetRPMEntry.setDouble(sparkTargetRPM);
 
   }
 

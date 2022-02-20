@@ -82,6 +82,7 @@ public final class Constants {
     public static NetworkTableEntry sparkIEntry = shooterTab.add("SPARK I", 0.0).getEntry();
     public static NetworkTableEntry sparkDEntry = shooterTab.add("SPARK D", 0.0).getEntry();
 
+    public static double sparkTargetRPM = 3000;
     public static NetworkTableEntry sparkTargetRPMEntry = shooterTab.add("RPM GOAL", 3000.0).getEntry();
 
     public static NetworkTableEntry sparkPower = shooterTab.add("SPARK Power", 0.0).getEntry();
