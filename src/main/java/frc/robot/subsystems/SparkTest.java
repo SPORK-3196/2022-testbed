@@ -17,7 +17,7 @@ public class SparkTest extends SubsystemBase {
   
   public CANSparkMax sparkMax1 = new CANSparkMax(12, MotorType.kBrushless);
   public CANSparkMax sparkMax2 = new CANSparkMax(14, MotorType.kBrushless);
-  
+  public CANSparkMax sparkMax3 = new CANSparkMax(17, MotorType.kBrushless);
 
   public RelativeEncoder sparkEncoder = sparkMax1.getEncoder();
   public PIDController sparkPIDController = new PIDController(5e-5, 1e-6, 0);

@@ -47,6 +47,7 @@ public class AutoSparkControl extends CommandBase {
     else {
       SPARK_MAXES.stopSparks();
     }
+    SPARK_MAXES.sparkMax3.set(0.4);
     
     
   }
