@@ -18,6 +18,7 @@ public class SparkTest extends SubsystemBase {
   public CANSparkMax sparkMax1 = new CANSparkMax(12, MotorType.kBrushless);
   public CANSparkMax sparkMax2 = new CANSparkMax(14, MotorType.kBrushless);
   public CANSparkMax sparkMax3 = new CANSparkMax(17, MotorType.kBrushless);
+  public CANSparkMax sparkMax4 = new CANSparkMax(15, MotorType.kBrushless);
 
   public RelativeEncoder sparkEncoder = sparkMax1.getEncoder();
   public PIDController sparkPIDController = new PIDController(5e-5, 1e-6, 0);
@@ -33,12 +34,14 @@ public class SparkTest extends SubsystemBase {
   public void runSparks (double power) {
     sparkMax1.set(power * -1);
     sparkMax2.set(power * -1);
+    sparkMax4.set(power * -0.5);
+ 
   }
 
   public void stopSparks() {
     sparkMax1.stopMotor();
     sparkMax2.stopMotor();
-    
+    sparkMax4.stopMotor();
   }
 
 

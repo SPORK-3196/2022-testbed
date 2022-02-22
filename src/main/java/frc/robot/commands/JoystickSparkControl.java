@@ -14,8 +14,6 @@ public class JoystickSparkControl extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   
   SparkTest SPARK_MAXES;
-  
-
   /**
    * Creates a new ExampleCommand.
    *
@@ -23,9 +21,11 @@ public class JoystickSparkControl extends CommandBase {
    */
   public JoystickSparkControl(SparkTest sparkMaxSubsystem) {
     SPARK_MAXES = sparkMaxSubsystem;
+
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(SPARK_MAXES);
   }
+
 
   // Called when the command is initially scheduled.
   @Override
