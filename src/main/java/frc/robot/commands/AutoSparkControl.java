@@ -48,7 +48,7 @@ public class AutoSparkControl extends CommandBase {
     else {
       shooter.stopShooter();
     }
-
+  
     
     
   }
