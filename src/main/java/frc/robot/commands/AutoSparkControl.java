@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.SparkTest;
 import static frc.robot.Constants.*;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -13,7 +14,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class AutoSparkControl extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   
-  SparkTest SPARK_MAXES;
+  Shooter shooter;
   
 
   /**
@@ -21,10 +22,10 @@ public class AutoSparkControl extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public AutoSparkControl(SparkTest sparkMaxSubsystem) {
-    SPARK_MAXES = sparkMaxSubsystem;
+  public AutoSparkControl(Shooter Subsystem) {
+    shooter = Subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(SPARK_MAXES);
+    addRequirements(shooter);
   }
 
 
@@ -42,12 +43,12 @@ public class AutoSparkControl extends CommandBase {
     
     
     if (AutoSparkFire) {
-      SPARK_MAXES.runSparks(AutoSparkPower);
+      shooter.runShooter(AutoSparkPower);
     }
     else {
-      SPARK_MAXES.stopSparks();
+      shooter.stopShooter();
     }
-    SPARK_MAXES.sparkMax3.set(0.4);
+
     
     
   }

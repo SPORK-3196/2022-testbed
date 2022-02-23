@@ -104,6 +104,8 @@ public class Robot extends TimedRobot {
     sparkTargetRPM = sparkTargetRPMEntry.getDouble(3000);
     sparkTargetRPMEntry.setDouble(sparkTargetRPM);
 
+    limelightCalculatedRPM = (1459) * (Math.pow(Math.E, (0.00116 * limelightCalculatedDistance)));
+
   }
 
   /** This function is called once each time the robot enters Disabled mode. */

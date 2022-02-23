@@ -4,21 +4,17 @@
 
 package frc.robot.commands;
 
-import frc.robot.subsystems.SparkTest;
+import frc.robot.subsystems.Shooter;
 import static frc.robot.Constants.*;
 
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.ControlType;
-
-import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 
 /** An example command that uses an example subsystem. */
-public class PIDAuto extends CommandBase {
+public class ComputedShoot extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   
-  SparkTest SPARK_MAXES;
+  Shooter shooter;
    
 
 
@@ -28,31 +24,25 @@ public class PIDAuto extends CommandBase {
    * @param subsystem The subsystem used by this command.
    */
 
-  public PIDAuto(SparkTest sparkMaxSubsystem) {
-    SPARK_MAXES = sparkMaxSubsystem;
+  public ComputedShoot(Shooter Subsystem) {
+    this.shooter = Subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(SPARK_MAXES);
+    addRequirements(shooter);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    SPARK_MAXES.sparkPIDController.setP(0.00005);
-    SPARK_MAXES.sparkPIDController.setI(0.0002);
-    SPARK_MAXES.sparkPIDController.setD(2.0); 
-    SPARK_MAXES.sparkPIDController.setSetpoint(sparkTargetRPMEntry.getDouble(3000));
-    AutoSparkFire = true;
+    shooter.setSetpoint(3000);
   }
     
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    SPARK_MAXES.sparkPIDController.setP(0.00005);
-    SPARK_MAXES.sparkPIDController.setI(0.0002);
-    SPARK_MAXES.sparkPIDController.setD(5.0); 
-    System.out.println(SPARK_MAXES.sparkPIDController.calculate(-1 * SPARK_MAXES.sparkVelocity));
-    SPARK_MAXES.runSparks(SPARK_MAXES.sparkPIDController.calculate(-1 * SPARK_MAXES.sparkVelocity));
+    shooter.setSetpoint(limelightCalculatedRPM);
+    shooter.runShooter(shooter.calculate(shooter.getVelocity()));
+    
   }
 
   // Called once the command ends or is interrupted.

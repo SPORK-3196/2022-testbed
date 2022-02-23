@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.SparkTest;
 import static frc.robot.Constants.*;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -13,17 +14,17 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class JoystickSparkControl extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   
-  SparkTest SPARK_MAXES;
+  Shooter shooter;
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public JoystickSparkControl(SparkTest sparkMaxSubsystem) {
-    SPARK_MAXES = sparkMaxSubsystem;
+  public JoystickSparkControl(Shooter Subsystem) {
+    shooter = Subsystem;
 
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(SPARK_MAXES);
+    addRequirements(shooter);
   }
 
 
@@ -37,7 +38,7 @@ public class JoystickSparkControl extends CommandBase {
   @Override
   public void execute() {
     
-    SPARK_MAXES.runSparks(xboxLeftJoystickY * -1);
+    shooter.runShooter(xboxLeftJoystickY * -1);
     
 
     /*

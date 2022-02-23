@@ -9,7 +9,8 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import frc.robot.commands.AutoSparkControl;
 import frc.robot.commands.JoystickSparkControl;
-import frc.robot.commands.PIDAuto;
+import frc.robot.commands.ComputedShoot;
+import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.SparkTest;
 import edu.wpi.first.wpilibj2.command.Command;
 
@@ -22,16 +23,16 @@ import edu.wpi.first.wpilibj2.command.Command;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   
-  private final SparkTest spark_subsystem = new SparkTest();
-  private final AutoSparkControl humanAutoSparkControl = new AutoSparkControl(spark_subsystem);
-  private final PIDAuto PIDAutoSparkControl = new PIDAuto(spark_subsystem);
-  private final JoystickSparkControl joystick_spark = new JoystickSparkControl(spark_subsystem);
+  private final Shooter shooter = new Shooter();
+  private final AutoSparkControl humanAutoSparkControl = new AutoSparkControl(shooter);
+  private final ComputedShoot PIDAutoSparkControl = new ComputedShoot(shooter);
+  private final JoystickSparkControl joystick_spark = new JoystickSparkControl(shooter);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-    spark_subsystem.setDefaultCommand(joystick_spark);
+    shooter.setDefaultCommand(joystick_spark);
   }
 
   /**
@@ -40,7 +41,9 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  private void configureButtonBindings() {}
+  private void configureButtonBindings() {
+
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.

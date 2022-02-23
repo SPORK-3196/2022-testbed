@@ -10,7 +10,6 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import static frc.robot.Constants.*;
 
 import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.wpilibj2.command.PIDSubsystem;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class SparkTest extends SubsystemBase {

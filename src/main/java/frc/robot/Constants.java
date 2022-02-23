@@ -87,5 +87,9 @@ public final class Constants {
 
     public static NetworkTableEntry sparkPower = shooterTab.add("SPARK Power", 0.0).getEntry();
 
+    public static double limelightCalculatedRPM;
+
+    public static double limelightCalculatedDistance;
+
 
 }
