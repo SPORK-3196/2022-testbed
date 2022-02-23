@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.SparkTest;
 import static frc.robot.Constants.*;
 
@@ -19,7 +20,7 @@ public class PIDAuto extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   
   SparkTest SPARK_MAXES;
-   
+  Intake INTAKE_SPARK;
 
 
   /**
@@ -30,6 +31,7 @@ public class PIDAuto extends CommandBase {
 
   public PIDAuto(SparkTest sparkMaxSubsystem) {
     SPARK_MAXES = sparkMaxSubsystem;
+
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(SPARK_MAXES);
   }
@@ -53,6 +55,9 @@ public class PIDAuto extends CommandBase {
     SPARK_MAXES.sparkPIDController.setD(5.0); 
     System.out.println(SPARK_MAXES.sparkPIDController.calculate(-1 * SPARK_MAXES.sparkVelocity));
     SPARK_MAXES.runSparks(SPARK_MAXES.sparkPIDController.calculate(-1 * SPARK_MAXES.sparkVelocity));
+
+    INTAKE_SPARK.runIntake(INTAKE_SPARK.)
+    
   }
 
   // Called once the command ends or is interrupted.
