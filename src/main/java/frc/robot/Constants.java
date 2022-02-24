@@ -20,6 +20,15 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
  
 public final class Constants {
 
+    public static final class Limelight {
+        public static double LimelightX;
+        public static double LimelightY;
+    }
+
+    public static final class Shooter {
+        public static double limelightCalculatedDistance = 300;
+        public static double limelightCalculatedRPM;
+    }
     // Retrieve shuffleboard tabs
     public static ShuffleboardTab XboxInput1 =  Shuffleboard.getTab("Xbox Controller #1");
     public static ShuffleboardTab XboxInput2 =  Shuffleboard.getTab("Xbox Controller #2");
@@ -50,10 +59,10 @@ public final class Constants {
     public static NetworkTableEntry xboxRightJoystickXEntry = XboxInput1.add("Right Joystick X", 0.0).getEntry();
     public static NetworkTableEntry xboxRightJoystickYEntry = XboxInput1.add("Right Joystick Y", 0.0).getEntry();
 
-    public static boolean xboxControllerXButton;
-    public static boolean xboxControllerYButton;
-    public static boolean xboxControllerAButton;
-    public static boolean xboxControllerBButton;
+    public static boolean X1_XButton;
+    public static boolean X1_YButton;
+    public static boolean X1_AButton;
+    public static boolean X1_BButton;
 
     public static NetworkTableEntry xboxControllerXButtonEntry = XboxInput1.add("X Button", false).getEntry();
     public static NetworkTableEntry xboxControllerYButtonEntry = XboxInput1.add("Y Button", false).getEntry();
@@ -74,22 +83,10 @@ public final class Constants {
     public static NetworkTableEntry Encoder_RPM_Entry = shooterTab.add("SPARK RPM", 0.0).getEntry();
     public static NetworkTableEntry Encoder_MPH_Entry = shooterTab.add("SPARK MPH", 0.0).getEntry();
 
-    public static double sparkP = 0.0;
-    public static double sparkI = 0.0;
-    public static double sparkD = 0.0;
-
-    public static NetworkTableEntry sparkPEntry = shooterTab.add("SPARK P", 0.0).getEntry();
-    public static NetworkTableEntry sparkIEntry = shooterTab.add("SPARK I", 0.0).getEntry();
-    public static NetworkTableEntry sparkDEntry = shooterTab.add("SPARK D", 0.0).getEntry();
-
     public static double sparkTargetRPM = 3000;
     public static NetworkTableEntry sparkTargetRPMEntry = shooterTab.add("RPM GOAL", 3000.0).getEntry();
 
     public static NetworkTableEntry sparkPower = shooterTab.add("SPARK Power", 0.0).getEntry();
 
-    public static double limelightCalculatedRPM;
-
-    public static double limelightCalculatedDistance;
-
-
+    public static NetworkTableEntry distanceEntry = shooterTab.add("Distance From Target", 0.0).getEntry();
 }

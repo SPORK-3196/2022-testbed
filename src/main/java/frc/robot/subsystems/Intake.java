@@ -4,18 +4,12 @@
 
 package frc.robot.subsystems;
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.RelativeEncoder;
-import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-import static frc.robot.Constants.*;
-
-import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.wpilibj2.command.PIDSubsystem;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Intake extends SubsystemBase {
   
-  public CANSparkMax intakeSpark = new CANSparkMax(15, MotorType.kBrushless);
+  public CANSparkMax intakeMotor = new CANSparkMax(15, MotorType.kBrushless);
 
 
   
@@ -24,13 +18,13 @@ public class Intake extends SubsystemBase {
   }
   
  
-  public void runIntake (double power) {
-    intakeSpark.set(power * -0.5);
+  public void runIntake () {
+    intakeMotor.set(-0.5);
 
   }
 
   public void stopIntake() {
-    intakeSpark.stopMotor();
+    intakeMotor.stopMotor();
   }
 
 

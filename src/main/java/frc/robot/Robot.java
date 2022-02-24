@@ -7,8 +7,12 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj.XboxController;
+
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+
 import static frc.robot.Constants.*;
+import static frc.robot.Constants.Shooter.*;
 
 
 
@@ -24,13 +28,9 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
 
-  public static XboxController XboxController;
-
-
-
-  
-  
-
+  public static XboxController X1_Controller;
+  public static JoystickButton button1;
+  public static JoystickButton button2;
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -40,7 +40,9 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
-    XboxController = new XboxController(0);
+    X1_Controller = new XboxController(0);
+    button1 = new JoystickButton(X1_Controller, 1);
+    button2 = new JoystickButton(X1_Controller, 2);
     Constants.AutoSparkFireEntry.setBoolean(Constants.AutoSparkFire);
     Constants.AutoSparkPowerEntry.setDouble(Constants.AutoSparkPower);
   }
@@ -61,20 +63,20 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().run();
 
     // Retrieves values from the XboxController object and stores them in the variables initialized in Constants.java
-    xboxRightTriggerValue = XboxController.getRightTriggerAxis();
-    xboxLeftTriggerValue = XboxController.getLeftTriggerAxis();
-    xboxRightBumper = XboxController.getRightBumper();
-    xboxLeftBumper = XboxController.getLeftBumper();
+    xboxRightTriggerValue = X1_Controller.getRightTriggerAxis();
+    xboxLeftTriggerValue = X1_Controller.getLeftTriggerAxis();
+    xboxRightBumper = X1_Controller.getRightBumper();
+    xboxLeftBumper = X1_Controller.getLeftBumper();
 
-    xboxLeftJoystickX = XboxController.getLeftX();
-    xboxLeftJoystickY = XboxController.getLeftY();
-    xboxRightJoystickX = XboxController.getRightX();
-    xboxRightJoystickY = XboxController.getRightY();
+    xboxLeftJoystickX = X1_Controller.getLeftX();
+    xboxLeftJoystickY = X1_Controller.getLeftY();
+    xboxRightJoystickX = X1_Controller.getRightX();
+    xboxRightJoystickY = X1_Controller.getRightY();
 
-    xboxControllerXButton = XboxController.getXButton();
-    xboxControllerYButton = XboxController.getYButton();
-    xboxControllerAButton = XboxController.getAButton();
-    xboxControllerBButton = XboxController.getBButton();
+    X1_XButton = X1_Controller.getXButton();
+    X1_YButton = X1_Controller.getYButton();
+    X1_AButton = X1_Controller.getAButton();
+    X1_BButton = X1_Controller.getBButton();
 
     // Stores values stored in the controller variables and sends the information to the NetworkTable Entries
     xboxRightTriggerEntry.setDouble(xboxRightTriggerValue);
@@ -87,24 +89,21 @@ public class Robot extends TimedRobot {
     xboxRightJoystickXEntry.setDouble(xboxRightJoystickX);
     xboxRightJoystickYEntry.setDouble(xboxRightJoystickY);
 
-    xboxControllerXButtonEntry.setBoolean(xboxControllerXButton);
-    xboxControllerYButtonEntry.setBoolean(xboxControllerYButton);
-    xboxControllerAButtonEntry.setBoolean(xboxControllerAButton);
-    xboxControllerBButtonEntry.setBoolean(xboxControllerBButton);
+    xboxControllerXButtonEntry.setBoolean(X1_XButton);
+    xboxControllerYButtonEntry.setBoolean(X1_YButton);
+    xboxControllerAButtonEntry.setBoolean(X1_AButton);
+    xboxControllerBButtonEntry.setBoolean(X1_BButton);
 
     AutoSparkFire = AutoSparkFireEntry.getBoolean(false);
     AutoSparkPower = AutoSparkPowerEntry.getDouble(0.2);
-
-    
-
-    sparkP = sparkPEntry.getDouble(sparkP);
-    sparkI = sparkIEntry.getDouble(sparkI);
-    sparkD = sparkDEntry.getDouble(sparkD);
 
     sparkTargetRPM = sparkTargetRPMEntry.getDouble(3000);
     sparkTargetRPMEntry.setDouble(sparkTargetRPM);
 
     limelightCalculatedRPM = (1459) * (Math.pow(Math.E, (0.00116 * limelightCalculatedDistance)));
+    
+    limelightCalculatedDistance = distanceEntry.getDouble(3000);
+    distanceEntry.setDouble(limelightCalculatedDistance);
 
   }
 

@@ -5,7 +5,7 @@
 package frc.robot.commands;
 
 import frc.robot.subsystems.Shooter;
-import static frc.robot.Constants.*;
+import static frc.robot.Constants.Shooter.*;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
@@ -42,7 +42,6 @@ public class ComputedShoot extends CommandBase {
   public void execute() {
     shooter.setSetpoint(limelightCalculatedRPM);
     shooter.runShooter(shooter.calculate(shooter.getVelocity()));
-    
   }
 
   // Called once the command ends or is interrupted.

@@ -35,8 +35,7 @@ public class Shooter extends SubsystemBase { // Made By Caputo
     rightShooter.set(power);
   }
 
-  public void stopShooter() {
-    leftShooter.stopMotor();
+  public void stopShooter() {    leftShooter.stopMotor();
     rightShooter.stopMotor();
   } 
 

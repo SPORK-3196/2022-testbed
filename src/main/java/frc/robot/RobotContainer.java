@@ -8,9 +8,11 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import frc.robot.commands.AutoSparkControl;
-import frc.robot.commands.JoystickSparkControl;
+import frc.robot.commands.IntakeControl;
 import frc.robot.commands.ComputedShoot;
+import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
+import static frc.robot.Robot.*;
 import frc.robot.subsystems.SparkTest;
 import edu.wpi.first.wpilibj2.command.Command;
 
@@ -24,15 +26,15 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   
   private final Shooter shooter = new Shooter();
+  private final Intake intake = new Intake();
   private final AutoSparkControl humanAutoSparkControl = new AutoSparkControl(shooter);
-  private final ComputedShoot PIDAutoSparkControl = new ComputedShoot(shooter);
-  private final JoystickSparkControl joystick_spark = new JoystickSparkControl(shooter);
+
+
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-    shooter.setDefaultCommand(joystick_spark);
   }
 
   /**
@@ -42,7 +44,8 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-
+    button1.whenHeld(new IntakeControl(intake));
+    button2.whenHeld(new ComputedShoot(shooter));
   }
 
   /**
