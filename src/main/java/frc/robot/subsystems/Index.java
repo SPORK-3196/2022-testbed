@@ -21,15 +21,36 @@ public class Index extends SubsystemBase {
   public CANSparkMax indexMotor = new CANSparkMax(12, MotorType.kBrushless);
 
 
-  public static boolean lastSensor;
-  public static DigitalInput[] sensors = new DigitalInput[3];
+  public static boolean ballEntry = false;
+  
   public static DigitalInput sensorAlpha = new DigitalInput(0);
   public static DigitalInput sensorBeta = new DigitalInput(1);
   public static DigitalInput sensorSigma = new DigitalInput(2);
+
+  public static DigitalInput[] sensors;
+  sensors[0] = sensorAlpha;
+  sensors[1] = sensorBeta;
+  sensors[2] = sensorSigma;
+  
   /** Creates a new SparkTest. */
   public Index() {
   }
   
+  public boolean getSensor(int sensorNumber) {
+    return !sensors[sensorNumber].get();
+  }
+
+  public boolean getIntakeSensor() {
+    return !sensorSigma;
+  }
+
+  public boolean getMidSensor() {
+    return !sensorBeta;
+  }
+
+  public boolean getTopSensor() {
+    return !sensorAlpha;
+  } 
  
   public void runIndex () {
     indexMotor.set(-0.2);

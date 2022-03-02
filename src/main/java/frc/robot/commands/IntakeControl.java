@@ -41,14 +41,14 @@ public class IntakeControl extends CommandBase {
   @Override
   public void execute() {
 
-    if (!(index.sensorSigma.get()) || index.lastSensor) {
+    if (index.getIntakeSensor()) || index.ballEntry) {
       index.runIndex();
-      index.lastSensor = true;
-      
+      index.ballEntry = true;
     }
-    if (!(index.sensorBeta.get())) {
+
+    if (index.getMidSensor()) {
       index.stopIndex();
-      index.lastSensor = false;
+      index.ballEntry = false;
     }
     
 
