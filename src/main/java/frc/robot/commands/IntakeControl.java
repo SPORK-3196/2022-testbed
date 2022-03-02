@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import frc.robot.subsystems.Index;
 import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
@@ -13,15 +14,20 @@ public class IntakeControl extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   
   Intake intake;
+  Index index;
+
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public IntakeControl(Intake Subsystem) {
-    intake = Subsystem;
+  public IntakeControl(Intake intake, Index index) {
+    this.intake = intake;
+    this.index = index;
+    
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(intake);
+    addRequirements(index);
   }
 
 
@@ -34,13 +40,24 @@ public class IntakeControl extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    intake.runIntake();
+
+    if (!(index.sensorSigma.get()) || index.lastSensor) {
+      index.runIndex();
+      index.lastSensor = true;
+      
+    }
+    if (!(index.sensorBeta.get())) {
+      index.stopIndex();
+      index.lastSensor = false;
+    }
+    
+
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    intake.stopIntake();
+    index.stopIndex();
   }
 
   // Returns true when the command should end.

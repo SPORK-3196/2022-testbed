@@ -13,56 +13,47 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 
 import edu.wpi.first.math.controller.PIDController;
-
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class Index { //Made By Caputo
-
-    public class SparkTest extends SubsystemBase {
+public class Index extends SubsystemBase {
   
-    
-        public CANSparkMax sparkMax4 = new CANSparkMax(15, MotorType.kBrushless);
-        
-        public RelativeEncoder sparkEncoder = sparkMax4.getEncoder();
-        public PIDController sparkPIDController = new PIDController(5e-5, 1e-6, 0);
-      
-        public boolean xboxRightBumper;
+  public CANSparkMax indexMotor = new CANSparkMax(12, MotorType.kBrushless);
 
-       //runs intake sparkMax
-        public void runSparks (double power) {
-          if (xboxRightBumper(true))
-            sparkMax4.set(power * -0.5);
+
+  public static boolean lastSensor;
+  public static DigitalInput[] sensors = new DigitalInput[3];
+  public static DigitalInput sensorAlpha = new DigitalInput(0);
+  public static DigitalInput sensorBeta = new DigitalInput(1);
+  public static DigitalInput sensorSigma = new DigitalInput(2);
+  /** Creates a new SparkTest. */
+  public Index() {
+  }
+  
  
-        }
-       //stops intake sparkMax
-        public void stopSparks() {
-          if (xboxRightBumper(false))
-            sparkMax4.stopMotor();
-          
-        }
-      
-      
-       /* @Override
-        public void periodic() {
-          // This method will be called once per scheduler run
-          sparkVelocity = sparkEncoder.getVelocity();
-      
-          Encoder_RPM_Entry.setDouble(sparkVelocity);
-      
-          Encoder_MPH_Entry.setDouble( ((sparkVelocity * SparkWheelRadiusDiameter) * 60 * Math.PI) / 63360 );
-        }
-        */
-      
-        @Override
-        public void simulationPeriodic() {
-          // This method will be called once per scheduler run during simulation
-        }
+  public void runIndex () {
+    indexMotor.set(-0.2);
 
-    }
+  }
 
-    public boolean xboxRightBumper(boolean b) {
-        return false;
-    }
+  public void stopIndex() {
+    indexMotor.stopMotor();
+  }
+
+
+  @Override
+  public void periodic() {
+    // This method will be called once per scheduler run
+  }
+
+  @Override
+  public void simulationPeriodic() {
+    // This method will be called once per scheduler run during simulation
+  }
+
+
 }
+
+
 
 

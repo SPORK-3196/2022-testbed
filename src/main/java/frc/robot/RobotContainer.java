@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import frc.robot.commands.AutoSparkControl;
 import frc.robot.commands.IntakeControl;
 import frc.robot.commands.ComputedShoot;
+import frc.robot.subsystems.Index;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
 import static frc.robot.Robot.*;
@@ -27,14 +28,16 @@ public class RobotContainer {
   
   private final Shooter shooter = new Shooter();
   private final Intake intake = new Intake();
+  private final Index index = new Index();
   private final AutoSparkControl humanAutoSparkControl = new AutoSparkControl(shooter);
-
+  private final IntakeControl controlIntake = new IntakeControl(intake, index);
 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+    index.setDefaultCommand(controlIntake);
   }
 
   /**
@@ -44,8 +47,8 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    button1.whenHeld(new IntakeControl(intake));
-    button2.whenHeld(new ComputedShoot(shooter));
+    // button1.whenHeld(new IntakeControl(intake, index));
+    // button2.whenHeld(new ComputedShoot(shooter));
   }
 
   /**

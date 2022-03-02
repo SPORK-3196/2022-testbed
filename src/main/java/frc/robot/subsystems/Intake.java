@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Intake extends SubsystemBase {
   
-  public CANSparkMax intakeMotor = new CANSparkMax(15, MotorType.kBrushless);
+  // public CANSparkMax intakeMotor = new CANSparkMax(15, MotorType.kBrushless);
 
 
   
@@ -17,7 +17,7 @@ public class Intake extends SubsystemBase {
   public Intake() {
   }
   
- 
+ /*
   public void runIntake () {
     intakeMotor.set(-0.5);
 
@@ -37,6 +37,7 @@ public class Intake extends SubsystemBase {
   public void simulationPeriodic() {
     // This method will be called once per scheduler run during simulation
   }
+  */
 
 
 }
