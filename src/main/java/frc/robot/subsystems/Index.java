@@ -41,15 +41,15 @@ public class Index extends SubsystemBase {
   }
 
   public boolean getIntakeSensor() {
-    return !sensorSigma;
+    return !sensorSigma.get();
   }
 
   public boolean getMidSensor() {
-    return !sensorBeta;
+    return !sensorBeta.get();
   }
 
   public boolean getTopSensor() {
-    return !sensorAlpha;
+    return !sensorAlpha.get();
   } 
  
   public void runIndex () {

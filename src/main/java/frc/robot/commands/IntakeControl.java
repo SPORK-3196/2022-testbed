@@ -15,6 +15,7 @@ public class IntakeControl extends CommandBase {
   
   Intake intake;
   Index index;
+  boolean runIndex = false;
 
   /**
    * Creates a new ExampleCommand.
@@ -42,13 +43,20 @@ public class IntakeControl extends CommandBase {
   public void execute() {
 
     if (index.getIntakeSensor()) || index.ballEntry) {
-      index.runIndex();
+      runIndex = true;
       index.ballEntry = true;
     }
 
     if (index.getMidSensor()) {
-      index.stopIndex();
+      runIndex = false;
       index.ballEntry = false;
+    }
+
+    if (runIndex){
+      index.runIndex();
+    }
+    else {
+      index.stopIndex();
     }
     
 
