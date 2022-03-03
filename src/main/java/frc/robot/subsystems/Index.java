@@ -54,7 +54,7 @@ public class Index extends SubsystemBase {
   } 
  
   public void runIndex () {
-    indexMotor.set(-0.1);
+    indexMotor.set(-0.2);
 
   }
 
