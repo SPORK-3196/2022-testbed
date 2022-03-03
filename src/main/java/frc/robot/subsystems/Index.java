@@ -27,13 +27,14 @@ public class Index extends SubsystemBase {
   public static DigitalInput sensorBeta = new DigitalInput(1);
   public static DigitalInput sensorSigma = new DigitalInput(2);
 
-  public static DigitalInput[] sensors;
-  sensors[0] = sensorAlpha;
-  sensors[1] = sensorBeta;
-  sensors[2] = sensorSigma;
+  public static DigitalInput[] sensors = new DigitalInput[3];
+  
   
   /** Creates a new SparkTest. */
   public Index() {
+    sensors[0] = sensorAlpha;
+    sensors[1] = sensorBeta;
+    sensors[2] = sensorSigma;
   }
   
   public boolean getSensor(int sensorNumber) {
@@ -53,7 +54,7 @@ public class Index extends SubsystemBase {
   } 
  
   public void runIndex () {
-    indexMotor.set(-0.2);
+    indexMotor.set(-0.1);
 
   }
 

@@ -41,8 +41,8 @@ public class IntakeControl extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
-    if (index.getIntakeSensor()) || index.ballEntry) {
+  
+    if (index.getIntakeSensor() || index.ballEntry) {
       runIndex = true;
       index.ballEntry = true;
     }
@@ -52,14 +52,13 @@ public class IntakeControl extends CommandBase {
       index.ballEntry = false;
     }
 
-    if (runIndex){
+    if (runIndex) {
       index.runIndex();
     }
-    else {
+    else if (!runIndex) {
       index.stopIndex();
     }
     
-
   }
 
   // Called once the command ends or is interrupted.
