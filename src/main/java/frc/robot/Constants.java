@@ -89,7 +89,7 @@ public final class Constants {
 
     public static NetworkTableEntry sparkPower = shooterTab.add("SPARK Power", 0.0).getEntry();
 
-    public static NetworkTableEntry distanceEntry = shooterTab.add("Distance From Target", 0.0).getEntry();
+    public static NetworkTableEntry distanceEntry = shooterTab.add("Distance From Target", 200.0).getEntry();
 
     public static boolean readyToFire;
 }

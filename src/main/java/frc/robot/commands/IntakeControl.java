@@ -85,7 +85,6 @@ public class IntakeControl extends CommandBase {
     else if (!runIndex) {
       index.stopIndex();
     }
-    // index.runIndex();
     
   }
 

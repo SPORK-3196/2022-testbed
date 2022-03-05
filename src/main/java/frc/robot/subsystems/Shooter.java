@@ -20,7 +20,7 @@ public class Shooter extends SubsystemBase { // Made By Caputo
 
   public RelativeEncoder shooterEncoder = leftShooter.getEncoder();
 
-  public PIDController shooterPIDController = new PIDController(0.00002, 0.0000481, 0);
+  public PIDController shooterPIDController = new PIDController(0.000015, 0.0003481, 0);
   // public PIDController shooterPIDController = new PIDController(0.00005, 0.0002, 5.0);
 
   public double sparkVelocityRPM;
@@ -28,7 +28,7 @@ public class Shooter extends SubsystemBase { // Made By Caputo
   /** Creates a new SparkTest. */
   public Shooter() {
     rightShooter.setInverted(true);
-    shooterPIDController.setTolerance(300);
+    shooterPIDController.setTolerance(150);
     // shooterPIDController.setFeedForward(0.00000481);
   }
   
@@ -44,7 +44,7 @@ public class Shooter extends SubsystemBase { // Made By Caputo
   } 
 
   public void setSetpoint(double RPM) {
-    shooterPIDController.setSetpoint(RPM);
+    shooterPIDController.setSetpoint(-1 * RPM);
   }
 
   public double calculate(double currentRPM) {
@@ -64,7 +64,9 @@ public class Shooter extends SubsystemBase { // Made By Caputo
 
     Encoder_MPH_Entry.setDouble( ((sparkVelocityRPM * SparkWheelRadiusDiameter) * 60 * Math.PI) / 63360 );
     
-    if (leftShooter.get() == 0.6) {
+    // System.out.println(sparkVelocityRPM);
+
+    if (shooterPIDController.atSetpoint()) {
       readyToFire = true;
     }
     else {

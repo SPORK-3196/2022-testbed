@@ -100,12 +100,12 @@ public class Robot extends TimedRobot {
     AutoSparkFireEntry.setBoolean(AutoSparkFire);
     AutoSparkPowerEntry.setDouble(AutoSparkPower);
 
-    sparkTargetRPM = sparkTargetRPMEntry.getDouble(3000);
-    sparkTargetRPMEntry.setDouble(sparkTargetRPM);
+    sparkTargetRPMEntry.setDouble(limelightCalculatedRPM);
 
-    // limelightCalculatedRPM = (1459) * (Math.pow(Math.E, (0.00116 * limelightCalculatedDistance)));
-    limelightCalculatedRPM = 3000;
-    limelightCalculatedDistance = distanceEntry.getDouble(3000);
+    limelightCalculatedDistance = distanceEntry.getDouble(300);
+    limelightCalculatedRPM = (1459) * (Math.pow(Math.E, (0.00116 * limelightCalculatedDistance)));
+    // limelightCalculatedRPM = 3000;
+   
     distanceEntry.setDouble(limelightCalculatedDistance);
 
   }
