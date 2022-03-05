@@ -16,17 +16,20 @@ import static frc.robot.Constants.*;
 
 public class Shooter extends SubsystemBase { // Made By Caputo
   public CANSparkMax leftShooter = new CANSparkMax(17, MotorType.kBrushless);
-  public CANSparkMax rightShooter = new CANSparkMax(15, MotorType.kBrushless);
+  public CANSparkMax rightShooter = new CANSparkMax(14, MotorType.kBrushless);
 
   public RelativeEncoder shooterEncoder = leftShooter.getEncoder();
 
-  public PIDController shooterPIDController = new PIDController(0.00005, 0.0002, 5.0);
+  public PIDController shooterPIDController = new PIDController(0.00002, 0.0000481, 0);
+  // public PIDController shooterPIDController = new PIDController(0.00005, 0.0002, 5.0);
 
   public double sparkVelocityRPM;
   
   /** Creates a new SparkTest. */
   public Shooter() {
     rightShooter.setInverted(true);
+    shooterPIDController.setTolerance(300);
+    // shooterPIDController.setFeedForward(0.00000481);
   }
   
  
@@ -35,7 +38,8 @@ public class Shooter extends SubsystemBase { // Made By Caputo
     rightShooter.set(power);
   }
 
-  public void stopShooter() {    leftShooter.stopMotor();
+  public void stopShooter() {    
+    leftShooter.stopMotor();
     rightShooter.stopMotor();
   } 
 
@@ -48,8 +52,9 @@ public class Shooter extends SubsystemBase { // Made By Caputo
   }
 
   public double getVelocity() {
-    return sparkVelocityRPM;
+    return shooterEncoder.getVelocity();
   }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
@@ -58,6 +63,13 @@ public class Shooter extends SubsystemBase { // Made By Caputo
     Encoder_RPM_Entry.setDouble(sparkVelocityRPM);
 
     Encoder_MPH_Entry.setDouble( ((sparkVelocityRPM * SparkWheelRadiusDiameter) * 60 * Math.PI) / 63360 );
+    
+    if (leftShooter.get() == 0.6) {
+      readyToFire = true;
+    }
+    else {
+      readyToFire = false;
+    }
   }
 
   @Override

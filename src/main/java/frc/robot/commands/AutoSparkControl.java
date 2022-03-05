@@ -41,7 +41,7 @@ public class AutoSparkControl extends CommandBase {
   public void execute() {
     
     
-    if (AutoSparkFire) {
+    if (X1_AButton) {
       shooter.runShooter(AutoSparkPower);
     }
     else {

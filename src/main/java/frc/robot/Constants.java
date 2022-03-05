@@ -30,6 +30,7 @@ public final class Constants {
         public static double limelightCalculatedRPM;
     }
     // Retrieve shuffleboard tabs
+    
     public static ShuffleboardTab XboxInput1 =  Shuffleboard.getTab("Xbox Controller #1");
     public static ShuffleboardTab XboxInput2 =  Shuffleboard.getTab("Xbox Controller #2");
     public static ShuffleboardTab AutoControls =  Shuffleboard.getTab("Autonomous Controls");
@@ -89,4 +90,6 @@ public final class Constants {
     public static NetworkTableEntry sparkPower = shooterTab.add("SPARK Power", 0.0).getEntry();
 
     public static NetworkTableEntry distanceEntry = shooterTab.add("Distance From Target", 0.0).getEntry();
+
+    public static boolean readyToFire;
 }

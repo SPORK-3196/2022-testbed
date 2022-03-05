@@ -29,7 +29,7 @@ public class RobotContainer {
   private final Shooter shooter = new Shooter();
   private final Intake intake = new Intake();
   private final Index index = new Index();
-  private final AutoSparkControl humanAutoSparkControl = new AutoSparkControl(shooter);
+  private final ComputedShoot computerShoot = new ComputedShoot(shooter);
   private final IntakeControl controlIntake = new IntakeControl(intake, index);
 
 
@@ -38,6 +38,7 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
     index.setDefaultCommand(controlIntake);
+    shooter.setDefaultCommand(computerShoot);
   }
 
   /**
@@ -58,6 +59,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return humanAutoSparkControl;
+    return controlIntake;
   }
 }

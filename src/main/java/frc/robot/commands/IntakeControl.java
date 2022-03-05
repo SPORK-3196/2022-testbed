@@ -7,6 +7,7 @@ package frc.robot.commands;
 import frc.robot.subsystems.Index;
 import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import static frc.robot.Constants.*;
 
 
 /** An example command that uses an example subsystem. */
@@ -41,7 +42,11 @@ public class IntakeControl extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-  
+    
+    if (!index.getIntakeSensor() && !index.getMidSensor() && !index.getTopSensor()) {
+      runIndex = false;
+    }
+    
     if (index.getIntakeSensor() || index.ballEntry) {
       runIndex = true;
       index.ballEntry = true;
@@ -52,12 +57,35 @@ public class IntakeControl extends CommandBase {
       index.ballEntry = false;
     }
 
+    if (index.getMidSensor() && index.getIntakeSensor()) {
+      runIndex = true;
+      index.ballEntry = true;
+    }
+
+    if (index.getTopSensor()) {
+      runIndex = false;
+      index.ballEntry = false;
+    }
+
+    if (X1_AButton) {
+      if (readyToFire) {
+        runIndex = true;
+      }
+      if (!readyToFire) {
+        runIndex = false;
+      }
+    }
+
+    
+    
+
     if (runIndex) {
       index.runIndex();
     }
     else if (!runIndex) {
       index.stopIndex();
     }
+    // index.runIndex();
     
   }
 
